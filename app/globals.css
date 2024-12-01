@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 18, 18, 18;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-4xl sm:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl sm:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl sm:text-3xl;
+  }
+}
+
+@layer utilities {
+  [data-theme='purple'] {
+    --theme-color: theme(colors.purple.600);
+    --theme-hover: theme(colors.purple.500);
+  }
+  
+  [data-theme='blue'] {
+    --theme-color: theme(colors.blue.600);
+    --theme-hover: theme(colors.blue.500);
+  }
+  
+  [data-theme='green'] {
+    --theme-color: theme(colors.emerald.600);
+    --theme-hover: theme(colors.emerald.500);
+  }
+
+  .theme-color {
+    color: var(--theme-color);
+  }
+
+  .hover-theme-color:hover {
+    color: var(--theme-hover);
+  }
+
+  .category-tag {
+    @apply px-2 py-1 rounded-full text-xs;
+  }
+
+  [data-theme='purple'] .category-tag {
+    @apply bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300;
+  }
+  
+  [data-theme='blue'] .category-tag {
+    @apply bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300;
+  }
+  
+  [data-theme='green'] .category-tag {
+    @apply bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300;
+  }
+
+  /* 主题色渐变遮罩 */
+  [data-theme='purple'] .theme-gradient {
+    background: linear-gradient(135deg, theme(colors.purple.600/30), theme(colors.pink.600/30));
+  }
+  
+  [data-theme='blue'] .theme-gradient {
+    background: linear-gradient(135deg, theme(colors.blue.600/30), theme(colors.cyan.600/30));
+  }
+  
+  [data-theme='green'] .theme-gradient {
+    background: linear-gradient(135deg, theme(colors.emerald.600/30), theme(colors.teal.600/30));
+  }
+
+  .theme-gradient {
+    background: linear-gradient(135deg, var(--theme-color), var(--theme-hover));
+  }
+
+  /* 标签样式 */
+  .tag-link {
+    @apply px-3 py-1 text-sm rounded-full transition-colors;
+  }
+
+  [data-theme='purple'] .tag-link {
+    @apply bg-purple-50 hover:bg-purple-100 dark:bg-purple-900/20 dark:hover:bg-purple-900/30;
+  }
+  
+  [data-theme='blue'] .tag-link {
+    @apply bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-900/30;
+  }
+  
+  [data-theme='green'] .tag-link {
+    @apply bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-900/20 dark:hover:bg-emerald-900/30;
+  }
+}
